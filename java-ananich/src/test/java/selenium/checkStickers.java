@@ -32,7 +32,7 @@ public class checkStickers {
     }
 
     @Test
-    public void clickAllSections() {
+    public void checkStickers() {
 
         driver.get("http://localhost/litecart/en/");
 
@@ -45,9 +45,9 @@ public class checkStickers {
             driver.findElement(By.cssSelector("nav.content > ul > li:nth-child(" + i + ") a")).click();
 
             //Check that each item has only one sticker
-            List<WebElement> items = driver.findElements(By.cssSelector("ul.products div.image-wrapper"));
+            List<WebElement> items = driver.findElements(By.cssSelector("li.product"));
             for(WebElement item : items) {
-                List<WebElement> stickers = item.findElements(By.cssSelector("div"));
+                List<WebElement> stickers = item.findElements(By.cssSelector("div.sticker"));
                 try {
                     assertEquals(1, stickers.size());
                 } catch (Throwable t) {
