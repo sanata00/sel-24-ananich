@@ -37,44 +37,39 @@ public class ProductPageHasCorrectData {
         WebElement firstCampaignProduct = driver.findElement(By.cssSelector("div#box-campaigns a.link:first-child"));
 
         String productNameMainPage = firstCampaignProduct.findElement(By.cssSelector("div.name")).getText();
-        System.out.println("Product name main page: " + productNameMainPage);
 
-        WebElement regularPrice = firstCampaignProduct.findElement(By.cssSelector("s.regular-price"));
-        int regularPriceMainPage = Integer.parseInt(regularPrice.getText().substring(1));
-        System.out.println("Regular price main page: " + regularPriceMainPage);
+        WebElement regularPriceElement = firstCampaignProduct.findElement(By.cssSelector("s.regular-price"));
+        int regularPriceMainPage = Integer.parseInt(regularPriceElement.getText().substring(1));
 
-        WebElement campaignPrice = firstCampaignProduct.findElement(By.cssSelector("strong.campaign-price"));
-        int campaignPriceMainPage = Integer.parseInt(campaignPrice.getText().substring(1));
-        System.out.println("Campaign price main page: " + campaignPriceMainPage);
+        WebElement campaignPriceElement = firstCampaignProduct.findElement(By.cssSelector("strong.campaign-price"));
+        int campaignPriceMainPage = Integer.parseInt(campaignPriceElement.getText().substring(1));
 
-        assertTrue("If a regular price crossed.", isTextCrossed(regularPrice));
-        assertTrue("If a color is grey for regular price.", isTextGrey(regularPrice));
-        assertTrue("If a color is red for campaign price.", isTextRed(campaignPrice));
-        assertTrue("If a campaign price is bold.", isTextBold(campaignPrice));
+        assertTrue("If a regular price crossed.", isTextCrossed(regularPriceElement));
+        assertTrue("If a color is grey for regular price.", isTextGrey(regularPriceElement));
+        assertTrue("If a color is red for campaign price.", isTextRed(campaignPriceElement));
+        assertTrue("If a campaign price is bold.", isTextBold(campaignPriceElement));
         assertTrue("If campaign price text bigger than regular.",
-                isCampaignPriceSizeBigger(regularPrice, campaignPrice));
+                isCampaignPriceSizeBigger(regularPriceElement, campaignPriceElement));
 
         //Perform checks on a product page
         firstCampaignProduct.click();
         String productNameProductPage = driver.findElement(By.cssSelector("h1.title")).getText();
-        System.out.println("product name: " + productNameProductPage);
 
-        regularPrice = driver.findElement(By.cssSelector("s.regular-price"));
-        int regularPriceProductPage = Integer.parseInt(regularPrice.getText().substring(1));
-        System.out.println("regular price: " + regularPriceProductPage);
+        regularPriceElement = driver.findElement(By.cssSelector("s.regular-price"));
+        int regularPriceProductPage = Integer.parseInt(regularPriceElement.getText().substring(1));
 
-        campaignPrice = driver.findElement(By.cssSelector("strong.campaign-price"));
-        int campaignPriceProductPage = Integer.parseInt(campaignPrice.getText().substring(1));
-        System.out.println("campaign price: " + campaignPriceProductPage);
+        campaignPriceElement = driver.findElement(By.cssSelector("strong.campaign-price"));
+        int campaignPriceProductPage = Integer.parseInt(campaignPriceElement.getText().substring(1));
 
         assertEquals(productNameMainPage, productNameProductPage);
         assertEquals(regularPriceMainPage, regularPriceProductPage);
-        assertTrue("If a regular price crossed.", isTextCrossed(regularPrice));
-        assertTrue("If a color is grey for regular price.", isTextGrey(regularPrice));
-        assertTrue("If a color is red for campaign price.", isTextRed(campaignPrice));
-        assertTrue("If a campaign price is bold.", isTextBold(campaignPrice));
+        assertEquals(campaignPriceMainPage, campaignPriceProductPage);
+        assertTrue("If a regular price crossed.", isTextCrossed(regularPriceElement));
+        assertTrue("If a color is grey for regular price.", isTextGrey(regularPriceElement));
+        assertTrue("If a color is red for campaign price.", isTextRed(campaignPriceElement));
+        assertTrue("If a campaign price is bold.", isTextBold(campaignPriceElement));
         assertTrue("If campaign price text bigger than regular.",
-                isCampaignPriceSizeBigger(regularPrice, campaignPrice));
+                isCampaignPriceSizeBigger(regularPriceElement, campaignPriceElement));
     }
 
     @After
@@ -143,6 +138,7 @@ public class ProductPageHasCorrectData {
         double sizeOfCampaignPrice = Double.parseDouble(
                 fontSizeOfCampaignPrice.substring(0, fontSizeOfCampaignPrice.indexOf('p')));
 
+        System.out.println(sizeOfRegularPrice + " | " + sizeOfCampaignPrice);
         return (sizeOfCampaignPrice > sizeOfRegularPrice);
     }
 }
