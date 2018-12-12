@@ -138,7 +138,6 @@ public class ProductPageHasCorrectData {
         double sizeOfCampaignPrice = Double.parseDouble(
                 fontSizeOfCampaignPrice.substring(0, fontSizeOfCampaignPrice.indexOf('p')));
 
-        System.out.println(sizeOfRegularPrice + " | " + sizeOfCampaignPrice);
         return (sizeOfCampaignPrice > sizeOfRegularPrice);
     }
 }
