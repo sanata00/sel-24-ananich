@@ -26,7 +26,6 @@ public class NewUserRegistration {
     @Test
     public void registerNewUser() {
 
-        //Login
         driver.get("http://localhost/litecart/en/");
         driver.findElement(By.cssSelector("form[name=login_form] a")).click();
 
