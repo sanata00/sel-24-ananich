@@ -55,7 +55,7 @@ public class AddNewProduct {
         new Select(driver.findElement(By.cssSelector("select[name=sold_out_status_id]")))
                 .selectByVisibleText("-- Select --");
         driver.findElement(By.cssSelector("input[name=new_images\\[\\]]"))
-                .sendKeys(System.getProperty("user.dir") + "/src/test/resources/images/carToy.jpg");
+                .sendKeys(System.getProperty("user.dir") + "/src/test/resources/images/carToy.png");
         driver.findElement(By.cssSelector("input[name=date_valid_from]"))
                 .sendKeys("1512" + Keys.TAB + "2018");
         driver.findElement(By.cssSelector("input[name=date_valid_to]"))
