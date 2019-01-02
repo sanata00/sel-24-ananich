@@ -28,10 +28,4 @@ public class TestBase {
                 new Thread(() -> { driver.quit(); driver = null; })
         );
     }
-
-    @After
-    public void stop() {
-        driver.quit();
-        driver = null;
-    }
 }
